@@ -1,0 +1,5 @@
+User-Agent: *
+Disallow: /admin.html
+Disallow: /private.html
+Allow: /catalog.html
+Sitemap: https://paulentin.github.io/soc-eng/sitemap.xml
