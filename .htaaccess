@@ -1,6 +1,30 @@
+RewriteEngine On
+
+<Files "private.html">
+  Order allow,deny
+  Deny from all
+</Files>
+
+<Files "admin.html">
+  Order allow,deny
+  Deny from all
+</Files>
+
+Redirect 301 /old-page.html /index.html
+
+ErrorDocument 404 /404.html
+
 <Directory "/admin">
   AuthType Basic
   AuthName "Restricted Area"
-  AuthUserFile /path/to/.htpasswd
+  AuthUserFile /home/YOUR_USER/.htpasswd
   Require valid-user
 </Directory>
+
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+<FilesMatch "\.(ini|log|md|sh|bak)$">
+  Order allow,deny
+  Deny from all
+</FilesMatch>
